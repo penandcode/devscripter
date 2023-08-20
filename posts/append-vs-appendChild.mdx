@@ -1,121 +1,164 @@
 ---
-title: How to create SVG-ready icon symbols in Sketch PART 2
-description: "Something has always existed. According to physics, there can never be true physical nothingness—though there can be times when existence resembles nothing, such as a vacuum (the state of minimum possible energy) (Phys.org). Creating a space where there are no quantum."
-date: May 8 2021
+title: append vs appendChild
+description: "Mastering JavaScript DOM Manipulation concepts "
+date: Aug 18, 2023
 ---
 
-Something has always existed. According to physics, there can never be true physical nothingness—though there can be times when existence resembles nothing, such as a vacuum (the state of minimum possible energy) (Phys.org). Creating a space where there are no quantum fluctuations requires an enormous amount of energy, and there would be a remnant of that energy in that space afterwards if the fluctuations were flushed out, plus an unstable environment (1veritasium). Even on computers, deleted data is not actually tossed away, by rather written over.
+Most of us face issues while understanding the concept of **append** and **appendChild**. Some of us also think that **append** adds the element to the adjacent while **appendChild** adds the element to the child. First of all, I would like to burst this myth. Both append as well as appendChild, adds the elements as a child only.
 
-# h1 Heading
+Then, what's the difference between them Or is there any difference between them?
 
-## h2 Heading
+Yes, there are a few differences. Let us take a look over them one by one:
 
-### h3 Heading
-
-#### h4 Heading
-
-##### h5 Heading
-
-###### h6 Heading
-
-## Horizontal Rules
-
----
-
-
-## Emphasis
-
-**This is bold text**
-
-**This is bold text**
-
-_This is italic text_
-
-_This is italic text_
-
-~~Strikethrough~~
-
-## Blockquotes
-
-> Blockquotes can also be nested...
->
-> > ...by using additional greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
-
-## Lists
-
-Unordered
-
-- Create a list by starting a line with `+`, `-`, or `*`
-- Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    * Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-- Very easy!
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-4. You can use sequential numbers...
-5. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-Block code "fences"
+**->** append method takes Node Objects as well as DOM Strings as input while appendChild supports Node Objects only.
 
 ```
-Sample text here...
+<body>
+    <div id="container">
+        <div>
+            <h1>Fruits list:</h1><!--Let's create a create a list for fruits list-->
+        </div>
+    </div>
+    <script>
+        let con = document.getElementById("container"); //Accessing the container to append the list.
+        let list = document.createElement("ul") //Creating the list
+        list.innerHTML = `
+            <li>
+                <p>Apple</p>
+            </li>
+            <li>
+                <p>Banana</p>
+            </li>
+            <li>
+                <p>Litchi</p>
+            </li>`
+        con.append(list) //Using append method works fine
+    </script>
+</body>
 ```
 
-Syntax highlighting
+> Using the append method
 
-```js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
+```
+<body>
+    <div id="container">
+        <div>
+            <h1>Fruits list:</h1><!--Let's create a create a list for fruits list-->
+        </div>
+    </div>
+    <script>
+        let con = document.getElementById("container"); //Accessing the container to append the list.
+        let list = document.createElement("ul") //Creating the list
+        list.innerHTML = `
+            <li>
+                <p>Apple</p>
+            </li>
+            <li>
+                <p>Banana</p>
+            </li>
+            <li>
+                <p>Litchi</p>
+            </li>`
+        con.appendChild(list) //Using appendChild method works fine
+    </script>
+</body>
 ```
 
-## Tables
+> Using the appendChild method
 
-| Option | Description                                                               |
-| ------ | ------------------------------------------------------------------------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default.    |
-| ext    | extension to be used for dest files.                                      |
+If we run both the codes, they are gonna give us the same output. 
 
-Right aligned columns
+![Output of appendChild and append for Node Object](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/auu8mm8zib17zzf3u5mw.png)
 
-| Option |                                                               Description |
-| -----: | ------------------------------------------------------------------------: |
-|   data | path to data files to supply the data that will be passed into templates. |
-| engine |    engine to be used for processing templates. Handlebars is the default. |
-|    ext |                                      extension to be used for dest files. |
+But as soon as we try to add some string using both methods, append works fine but appendChild shows an error in the console.
 
-## Links
+```
+<body>
+    <div id="container">
+        <div>
+            <h1>Fruits list:</h1><!--Let's create a create a list for fruits list-->
+        </div>
+    </div>
+    <script>
+        let con = document.getElementById("container"); //Accessing the container to append the name.
+        con.append("Apple") //Works fine
+    </script>
+</body>
+```
 
-[link text](http://dev.nodeca.com)
+> append method gives the following output:
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
 
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+![Output of append for DOM String](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/av1upcxudkzwnu679yiu.png)
+
+
+```
+<body>
+    <div id="container">
+        <div>
+            <h1>Fruits list:</h1><!--Let's create a create a list for fruits list-->
+        </div>
+    </div>
+    <script>
+        let con = document.getElementById("container"); //Accessing the container to append the name.
+        con.appendChild("Apple") //Throws error
+    </script>
+</body>
+```
+
+> appendChild method gives the following output:
+
+
+![Output of appendChild for DOM String](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qk41v9cgyfpx012bau04.png)
+
+
+Along with that, it gives an error in the console.
+
+
+![Error message](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wbl95ymmrtlw8d94mv31.png)
+
+
+**->** append method can take more than one argument while appendChild supports only one.
+
+
+```
+let p = document.createElement("p");
+p.innerHTML = "Cat"
+con.append(list, p) //Using append method works fine
+```
+> append shows the following result:
+
+![append result for multiple arguments](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0vfk03pxa3qb02q14bxy.png)
+
+
+```
+let p = document.createElement("p");
+p.innerHTML = "Cat"
+con.appendChild(list, p) //Using appendChild method appends the first element and ignores the rest.
+```
+
+> appendChild gives the following result:
+
+![appendChild result for multiple arguments](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pz8m8zw7xcxzgclpp8r7.png)
+
+
+**->** appendChild gives a return value but append doesn't.
+
+```
+console.log(con.append(list))
+```
+
+> append gives us the result as **undefined**.
+
+![append result on logging](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o376ezrmt8j0hp0q6ktc.png)
+
+
+```
+console.log(con.appendChild(list))
+```
+> appendChild gives us result as **DOM element**.
+
+
+![appendChild result on logging](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5crh2tpnk2a8pe57qbf5.png)
+
+In modern development, "append" is more often used due to its flexibility and its ability to append multiple elements at once. Although, "appendChild" is still useful when we are targeting to old browsers primarily.
