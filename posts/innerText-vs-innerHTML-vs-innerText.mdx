@@ -1,0 +1,131 @@
+---
+title: innerText vs innerHTML vs innerText
+description: "Mastering JavaScript DOM Manipulation concepts "
+date: Aug 26, 2023
+meta: DOM manipulation, innerText, innerHTML, textContent
+---
+
+Most of us use **innerText**, **innerHTML**, and **textContent** daily, but we don't know the actual difference between them. These three methods are often used for manipulating text content within the HTML elements. In this blog, we'll be exploring the differences between them.
+
+&nbsp;
+
+Let us try to understand it using an example:
+
+```
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerText vs innerHTML vs textContent</title>
+</head>
+
+<body>
+
+    <div>Hello World!</div>
+    
+    <div id="root">
+      //Content to be added by methods.
+    </div>
+    <script>
+        
+    </script>
+</body>
+
+</html>
+
+```
+&nbsp;
+Initially, our code is giving this as output:
+
+![Output without DOM methods](https://github.com/penandcode/devscripter/assets/72292130/7f389aed-e0e5-478b-8325-b54415bfedaa)
+
+
+&nbsp;
+Now, let us one by one use these methods and explore the differences between the three - **innerText**, **innerHTML**, and **textContent**.  
+    
+&nbsp;
+
+Let us take **innerHTML** first:
+  
+
+**innerHTML** returns everything inside it including all HTML elements, child tags, and text content and it is used to add HTML to the element.
+  
+
+```
+
+        let root = document.getElementById("root")
+        root.innerHTML = `
+        <p>The content is added using innerHTML method.</p>`
+
+        console.log(root.innerHTML);
+
+```
+
+&nbsp;
+
+> **innerHTML** method gives the following output:
+  
+
+![Output for innerHTML](https://github.com/penandcode/devscripter/assets/72292130/7a2a8acc-9d87-477f-93cc-b71e8d4e96e9)
+  
+
+![Console output for innerHTML ](https://github.com/penandcode/devscripter/assets/72292130/9ac9328f-f5ff-4192-af58-06911d08927c)
+
+&nbsp;
+
+Now, let's take the **innerText**:
+
+**innerText** returns the text that is visible on the screen means it excludes hidden text and the tags. It shows the text as it is visible on the screen. It excludes the hidden text and the HTML tags. It is used to add the text to an element.
+
+```
+
+        let root = document.getElementById("root")
+        root.innerText = `The content is added using innerText and
+        it takes text as we want to display it on screen.`
+        console.log(root.innerText);
+
+```
+
+&nbsp;  
+
+>**innerText** method gives the following output:
+
+![Output for innerText](https://github.com/penandcode/devscripter/assets/72292130/41543252-fdf8-47e1-9445-480ba96849d4)
+  
+
+![Console output for innerText ](https://github.com/penandcode/devscripter/assets/72292130/1172a475-0de9-436b-a01a-19f9d634d22f)
+  
+&nbsp;  
+
+Now, it's turn for **textContent**:
+  
+
+**textContent** returns complete text including the hidden text and hidden HTML tags. It shows exactly as the code is laid out in the source code.
+  
+
+```
+        let root = document.getElementById("root")
+        root.textContent = `The content is added using textContent 
+        and it gives the output as a text only no matter 
+        if we are adding multiple blank spaces or 
+        adding content in next line.`
+        console.log(text.textContent);
+
+```
+  
+
+&nbsp;
+
+>**textContent** method gives the following output:
+
+![Output for textContent](https://github.com/penandcode/devscripter/assets/72292130/de5b13d8-c38b-4954-adc1-b0dfe347505f)
+  
+
+![Console output for textContent ](https://github.com/penandcode/devscripter/assets/72292130/86316792-239b-4ffd-9237-41d3555ceee3)
+
+&nbsp;
+
+Deciding among innerText, innerHTML, and textContent relies on your particular use scenario. Every property exhibits unique behaviors concerning HTML interpretation, safety, and perceptibility. Grasping these distinctions empowers you to adeptly manage text content within the DOM, ensuring code security and user experience preservation.
