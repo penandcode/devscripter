@@ -1,0 +1,77 @@
+---
+title: Phases of Event
+description: "Mastering JavaScript DOM Manipulation concepts "
+date: Sep 10, 2023
+---
+
+Introduction:
+Events play a crucial role in JavaScript, allowing us to respond to user interactions and create dynamic and interactive web applications. Understanding the phases of JavaScript events and how they propagate through the DOM (Document Object Model) is essential for effective event handling. In this blog post, we will explore the different phases of JavaScript events and discuss their usefulness in event propagation.
+
+## Event Phases:
+JavaScript events go through three distinct phases during propagation: capturing, target, and bubbling.
+
+![Phases of event](https://github.com/penandcode/devscripter/assets/72292130/0e2268f6-93de-43a2-abcd-19a48624c427)
+
+
+### a. Capturing Phase:
+In the capturing phase, the event starts from the topmost ancestor element and travels down the DOM tree to the target element. This phase allows you to capture events on parent elements before they reach the target element. To demonstrate this, consider the following example:
+
+```html
+<div id="parent">
+  <div id="child">
+    <button id="button">Click me</button>
+  </div>
+</div>
+```
+
+```javascript
+const parent = document.getElementById('parent');
+const child = document.getElementById('child');
+const button = document.getElementById('button');
+
+parent.addEventListener('click', () => console.log('Parent clicked'), true);
+child.addEventListener('click', () => console.log('Child clicked'), true);
+button.addEventListener('click', () => console.log('Button clicked'), true);
+```
+
+In this example, when you click the button, the event will first trigger the capturing phase, logging "Parent clicked," "Child clicked," and "Button clicked" in that order.
+
+### b. Target Phase:
+After the capturing phase, the event reaches the target element, triggering any event listeners attached directly to it. In our previous example, if we add an event listener to the target element, it will be executed during the target phase:
+
+```javascript
+button.addEventListener('click', () => console.log('Button clicked'), false);
+```
+
+Now, when you click the button, the event will log "Button clicked" during the target phase.
+
+### c. Bubbling Phase:
+Once the target phase is complete, the event starts bubbling up the DOM tree, triggering event listeners on parent elements. This phase allows you to capture events on parent elements after they have reached the target element. To demonstrate this, consider the following example:
+
+```javascript
+parent.addEventListener('click', () => console.log('Parent clicked'), false);
+child.addEventListener('click', () => console.log('Child clicked'), false);
+button.addEventListener('click', () => console.log('Button clicked'), false);
+```
+
+Now, when you click the button, the event will log "Button clicked," "Child clicked," and "Parent clicked" in that order during the bubbling phase.
+
+[Phases of event](https://github.com/penandcode/devscripter/assets/72292130/b4f69ba2-ebb1-4d76-b7a7-4841dd3b3d0f)
+
+## Usefulness and Benefits:
+Understanding the phases of JavaScript events and event propagation is crucial for effective event handling. Here are some benefits and use cases:
+
+### a. Event Delegation: 
+By leveraging the capturing and bubbling phases, event delegation allows you to handle events on multiple elements efficiently. Instead of attaching event listeners to individual elements, you can attach a single event listener to a parent element and utilize event propagation to handle events on child elements.
+
+### b. Preventing Event Bubbling: 
+In some cases, you may want to prevent an event from bubbling up the DOM tree. By calling the `event.stopPropagation()` method within an event listener, you can stop the event from triggering event listeners on parent elements.
+
+### c. Event Order and Execution: Understanding the event phases helps you control the order of event execution. By attaching event listeners during the capturing or bubbling phase, you can ensure that specific event handlers are executed before or after others.
+
+### d. Performance Optimization: By utilizing event delegation and capturing phase, you can reduce the number of event listeners and improve performance, especially when dealing with large or dynamically changing DOM structures.
+
+## Conclusion:
+Understanding the phases of JavaScript events and event propagation is essential for effective event handling and creating dynamic web applications. By leveraging the capturing, target, and bubbling phases, you can efficiently handle events, delegate events to parent elements, control event order, and optimize performance. By mastering these concepts, you can create more interactive and responsive web experiences for your users.
+
+Remember to experiment and practice with event handling to fully grasp the potential of event phases and event propagation. Happy coding!
