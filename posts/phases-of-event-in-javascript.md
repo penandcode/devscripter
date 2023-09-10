@@ -1,6 +1,6 @@
 ---
-title: Phases of Event
-description: "Mastering JavaScript DOM Manipulation concepts "
+title: Phases of Event in JavaScript
+description: "Phases of JavaScript Event: Understanding and Utilizing Event Propagation"
 date: Sep 10, 2023
 ---
 
